@@ -3,6 +3,14 @@
 <h2> Contact us! </h2>
 
 <%= form_for :contact, url: contacts_path, data: {turbo:false} do |f| %>
+  <% if @contact %>
+    <% @contact.errors.full_messages.each do |msg| %>
+      <ul class='error'>
+        <li class='error'> <%= msg %> </li>
+      </ul>
+    <% end %>
+  <% end %>
+
   <p>
     <%= f.label :email %><br/>
     <%= f.text_field :email%>
