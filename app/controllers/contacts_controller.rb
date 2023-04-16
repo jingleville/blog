@@ -9,7 +9,10 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    @contact.save
+    if @contact.valid?
+      return @contact.save
+    end
+    render action: 'new'
   end
 
   private
